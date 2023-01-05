@@ -33,8 +33,9 @@
 		  text-shadow: 0 0 20px #952;
 		}
 		 
+		input.star-2:checked ~ label.star:before { color: #F62; }
 		input.star-1:checked ~ label.star:before { color: #F62; }
-		 
+
 		label.star:hover { transform: rotate(-15deg) scale(1.3); }
 		 
 		label.star:before {
@@ -44,22 +45,47 @@
 	</style>
 </head>
 <body>
-	<div class="col-12">
-		<div class="stars text-center">
-		  <form action="">
-		    <input class="star star-5" id="star-5" type="radio" name="star"/>
-		    <label class="star star-5" for="star-5"></label>
-		    <input class="star star-4" id="star-4" type="radio" name="star"/>
-		    <label class="star star-4" for="star-4"></label>
-		    <input class="star star-3" id="star-3" type="radio" name="star"/>
-		    <label class="star star-3" for="star-3"></label>
-		    <input class="star star-2" id="star-2" type="radio" name="star"/>
-		    <label class="star star-2" for="star-2"></label>
-		    <input class="star star-1" id="star-1" type="radio" name="star"/>
-		    <label class="star star-1" for="star-1"></label>
-		  </form>
+	<div class="mt-5">
+		<h1 class="text-center">Khảo sát đánh giá phản hồi qua email</h1>
+		<div class="text-center">
+			<div>
+				Nhằm nâng cao chất lượng dịch vụ, phục vụ tốt hơn cho khách hàng rất mong Quý khách hàng dành thời gian đánh giá về nội dung phúc đáp của EVNHANOI.
+			</div>
+			<div class="stars">
+				<form action="">
+					<input class="star star-5" id="star-5" type="radio" name="star"/>
+					<label class="star star-5" for="star-5"></label>
+					<input class="star star-4" id="star-4" type="radio" name="star"/>
+					<label class="star star-4" for="star-4"></label>
+					<input class="star star-3" id="star-3" type="radio" name="star"/>
+					<label class="star star-3" for="star-3"></label>
+					<input class="star star-2" id="star-2" type="radio" name="star"/>
+					<label class="star star-2" for="star-2"></label>
+					<input class="star star-1" id="star-1" type="radio" name="star"/>
+					<label class="star star-1" for="star-1"></label>
+				</form>
+			</div>
+			<div class="text-center d-none text-feedback">
+				<textarea class="form-control" rows="8" style="width: 1000px;display: inline-block"></textarea>
+			</div>
+			<div>
+				Xin trân trọng cảm ơn sự hợp tác của Quý khách hàng!
+			</div>
+			<button type="button" class="btn btn-info mt-3">Gửi kết quả</button>
 		</div>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('input[name=star]').on('change', function () {
+			if($('#star-1').is(':checked') || $('#star-2').is(':checked')){
+				$('.text-feedback').removeClass('d-none')
+			} else {
+				$('.text-feedback').addClass('d-none')
+			}
+		})
+	})
+</script>
 </html>
