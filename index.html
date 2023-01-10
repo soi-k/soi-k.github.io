@@ -89,12 +89,13 @@
 		})
 
 		$('.btn-submit').on('click', function () {
-			const data = []
-			data['star'] = $("input[type='radio'][name='star']:checked").val();
-			data['note'] = $('#feedback').val()
+			var star = $("input[type='radio'][name='star']:checked").val();
+			var note = $('#feedback').val()
 			$.ajax({
 				url:'http://192.168.211.2/evn/ApiExternal/updateRatingMail',
 				type:'POST',
+				dataType: "json",
+				data: { star: star, note: note },
 				data: data,
 				success:function(data){
 					console.log(data)
