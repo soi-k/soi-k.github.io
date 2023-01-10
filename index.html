@@ -66,7 +66,7 @@
 				</form>
 			</div>
 			<div class="text-center d-none text-feedback">
-				<textarea class="form-control" rows="8" style="width: 1000px;display: inline-block"></textarea>
+				<textarea class="form-control" id="feedback" rows="8" style="width: 1000px;display: inline-block"></textarea>
 			</div>
 			<div>
 				Xin trân trọng cảm ơn sự hợp tác của Quý khách hàng!
@@ -89,19 +89,14 @@
 
 		$('.btn-submit').on('click', function () {
 			const data = []
-			data['star'] = $('input[name=star]:checked').value()
+			data['star'] = $("input[type='radio'][name='star']:checked").val();
+			data['note'] = $('#feedback').val()
 			$.ajax({
 				url:'http://192.168.211.2/evn/ApiExternal/updateRatingMail',
 				type:'PUT',
-				data:'select=price&table=tshirts.prices&where=size = "' + size + '"',
+				data: data,
 				success:function(data){
-					if(isjson(data)){
-						data = $.parseJSON(data);
-						data = data[0];
-						price = data['price'];
-					}else{
-						//display error getting data
-					}
+					console.log(data)
 				}
 			});
 		})
